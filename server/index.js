@@ -8,7 +8,12 @@ import resourceRoutes from './routes/resources.js';
 import mentalHealthRoutes from './routes/mentalhealth.js';
 import mentorshipRoutes from './routes/mentorship.js';
 
+import connectDB from './config/db.js';
+
 dotenv.config();
+
+// Connect to Database
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,11 +27,6 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/resources', resourceRoutes);
 app.use('/api/mentalhealth', mentalHealthRoutes);
 app.use('/api/mentorship', mentorshipRoutes);
-
-// Database connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/cognisphere')
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
 
 // Basic route
 app.get('/', (req, res) => {

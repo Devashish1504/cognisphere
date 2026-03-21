@@ -23,7 +23,7 @@ const Register = () => {
       else if (user.role === 'mentor') navigate('/mentor');
       else navigate('/admin');
     } catch (err) {
-      setError('Registration failed. Email might already exist.');
+      setError(err.response?.data?.message || 'Registration failed. Email might already exist.');
     } finally {
       setLoading(false);
     }
