@@ -14,14 +14,26 @@ import Mentorship from './pages/Mentorship';
 import Analytics from './pages/Analytics';
 import Community from './pages/Community';
 import MentorDashboard from './pages/MentorDashboard';
+import AdminDashboard from './pages/AdminDashboard';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, loading } = React.useContext(AuthContext);
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
+      <div className="relative">
+        <div className="w-16 h-16 border-4 border-purple-200 dark:border-purple-900/30 border-t-purple-600 rounded-full animate-spin"></div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-8 h-8 bg-purple-600 rounded-full animate-pulse opacity-20"></div>
+        </div>
+      </div>
+    </div>
+  );
   if (!user) return <Navigate to="/login" />;
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/" />; // or forbidden page
+    return <Navigate to="/" />;
   }
 
   return children;
@@ -35,6 +47,8 @@ const App = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           
           <Route path="/student" element={<ProtectedRoute allowedRoles={['student']}><Layout /></ProtectedRoute>}>
             <Route index element={<StudentDashboard />} />
@@ -49,6 +63,10 @@ const App = () => {
 
           <Route path="/mentor" element={<ProtectedRoute allowedRoles={['mentor']}><Layout /></ProtectedRoute>}>
             <Route index element={<MentorDashboard />} />
+          </Route>
+
+          <Route path="/admin" element={<ProtectedRoute allowedRoles={['admin']}><Layout /></ProtectedRoute>}>
+            <Route index element={<AdminDashboard />} />
           </Route>
         </Routes>
       </AuthProvider>

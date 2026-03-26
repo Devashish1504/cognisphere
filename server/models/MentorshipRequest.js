@@ -5,6 +5,7 @@ const requestSchema = new mongoose.Schema({
   mentorId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   status: { type: String, enum: ['pending', 'accepted', 'rejected'], default: 'pending' },
   message: String,
+  notes: { type: String, default: '' },
   scheduledTime: Date
 }, { timestamps: true });
 

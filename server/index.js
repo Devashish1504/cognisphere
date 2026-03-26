@@ -7,6 +7,14 @@ import taskRoutes from './routes/tasks.js';
 import resourceRoutes from './routes/resources.js';
 import mentalHealthRoutes from './routes/mentalhealth.js';
 import mentorshipRoutes from './routes/mentorship.js';
+import careerRoutes from './routes/career.js';
+import analyticsRoutes from './routes/analytics.js';
+import mentorRoutes from './routes/mentor.js';
+import notificationRoutes from './routes/notifications.js';
+import adminRoutes from './routes/admin.js';
+import postRoutes from './routes/posts.js';
+import goalRoutes from './routes/goals.js';
+import careerRoutes from './routes/career.js';
 
 import connectDB from './config/db.js';
 
@@ -27,6 +35,14 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/resources', resourceRoutes);
 app.use('/api/mentalhealth', mentalHealthRoutes);
 app.use('/api/mentorship', mentorshipRoutes);
+app.use('/api/career', careerRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/mentor', mentorRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/posts', postRoutes);
+app.use('/api/goals', goalRoutes);
+app.use('/api/career', careerRoutes);
 
 // Basic route
 app.get('/', (req, res) => {

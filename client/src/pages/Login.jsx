@@ -99,7 +99,7 @@ const Login = () => {
                 <label className="ml-2 block text-sm text-slate-900">Remember me</label>
               </div>
               <div className="text-sm">
-                <a href="#" className="font-medium text-purple-600 hover:text-purple-500">Forgot password?</a>
+                <Link to="/forgot-password" className="font-medium text-purple-600 hover:text-purple-500">Forgot password?</Link>
               </div>
             </div>
 
